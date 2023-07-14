@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { useCreateUserMutation } from '@/redux/features/user/userApi';
 import { createUser } from '@/redux/features/user/userSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { useForm } from 'react-hook-form';
@@ -25,10 +26,16 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
+  const [createUserInDB, { isLoading }] = useCreateUserMutation();
+
   const dispatch = useAppDispatch();
 
-  const onSubmit = (data: SignupFormInputs) => {
+  const onSubmit = async (data: SignupFormInputs) => {
     console.log(data);
+    const { email, password } = data;
+
+    await createUserInDB({ email, password });
+
     dispatch(createUser({ email: data.email, password: data.password }));
   };
 
