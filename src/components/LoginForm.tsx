@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { useLoginMutation } from '@/redux/features/user/userApi';
 import { loginUser } from '@/redux/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useEffect } from 'react';
@@ -28,6 +29,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
   } = useForm<LoginFormInputs>();
 
   const { user, isLoading } = useAppSelector((state) => state.user);
+  const [loginUserUsingDb] = useLoginMutation();
   const dispatch = useAppDispatch();
 
   const { state } = useLocation();
@@ -36,8 +38,11 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: LoginFormInputs) => {
+  const onSubmit = async (data: LoginFormInputs) => {
     console.log(data);
+    const { email, password } = data;
+
+    await loginUserUsingDb({ email, password });
 
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
