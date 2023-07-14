@@ -32,7 +32,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
   const { state } = useLocation();
 
-  const path = state.path;
+  const path = state?.path;
 
   const navigate = useNavigate();
 
