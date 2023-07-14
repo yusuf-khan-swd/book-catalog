@@ -10,15 +10,15 @@ const productApi = api.injectEndpoints({
     }),
     postComment: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/comment/${id}`,
+        url: `/review/${id}`,
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['comments'],
+      invalidatesTags: ['reviews'],
     }),
     getComment: builder.query({
-      query: (id) => `/comment/${id}`,
-      providesTags: ['comments'],
+      query: (id) => `/review/${id}`,
+      providesTags: ['reviews'],
     }),
   }),
 });
