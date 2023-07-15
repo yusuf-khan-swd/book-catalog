@@ -40,7 +40,7 @@ const AddNewBookForm = () => {
       publicationDate: currentTime,
       user: user.email,
     };
-    addBook(bookData);
+    await addBook(bookData);
   };
 
   const clearForm = () => {
