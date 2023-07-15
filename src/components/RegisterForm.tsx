@@ -14,7 +14,7 @@ import { FcGoogle } from 'react-icons/fc';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
-interface SignupFormInputs {
+interface RegisterFormInputs {
   email: string;
   password: string;
 }
@@ -24,13 +24,13 @@ export function RegisterForm({ className, ...props }: UserAuthFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupFormInputs>();
+  } = useForm<RegisterFormInputs>();
 
   const [createUserInDB] = useCreateUserMutation();
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = async (data: SignupFormInputs) => {
+  const onSubmit = async (data: RegisterFormInputs) => {
     console.log(data);
     const { email, password } = data;
 
