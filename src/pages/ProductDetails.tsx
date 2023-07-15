@@ -1,12 +1,12 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
-import { useSingleProductQuery } from '@/redux/features/products/productApi';
+import { useSingleBookQuery } from '@/redux/features/books/productApi';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
 
-  const { data: product, isLoading } = useSingleProductQuery(id);
+  const { data: product, isLoading } = useSingleBookQuery(id);
 
   if (isLoading) {
     return <h1 className="text-center">Loading...</h1>;

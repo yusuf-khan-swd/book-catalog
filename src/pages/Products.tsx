@@ -2,17 +2,17 @@ import ProductCard from '@/components/ProductCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useGetProductsQuery } from '@/redux/features/products/productApi';
+import { useGetBooksQuery } from '@/redux/features/books/productApi';
 import {
   setPriceRange,
   toggleState,
-} from '@/redux/features/products/productSlice';
+} from '@/redux/features/books/productSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { Key } from 'react';
 
 export default function Products() {
-  const { data, isLoading } = useGetProductsQuery(undefined);
+  const { data, isLoading } = useGetBooksQuery(undefined);
 
   const dispatch = useAppDispatch();
   const { status, priceRange } = useAppSelector((state) => state.product);

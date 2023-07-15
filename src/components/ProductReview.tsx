@@ -1,7 +1,7 @@
 import {
   useGetCommentQuery,
   usePostCommentMutation,
-} from '@/redux/features/products/productApi';
+} from '@/redux/features/books/productApi';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FiSend } from 'react-icons/fi';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
