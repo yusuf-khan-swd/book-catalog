@@ -94,14 +94,10 @@ const AddNewBookForm = () => {
               <Label htmlFor="publicationDate">Publication Date*</Label>
               <Input
                 id="publicationDate"
-                {...register('publicationDate', {
-                  required: 'Publication Date is required',
-                })}
-                defaultValue={currentTime.toUTCString()}
+                defaultValue={`${currentTime.toUTCString()}`}
                 disabled={true}
                 type="text"
               />
-              <p className="text-red-500">{errors.publicationDate?.message}</p>
             </div>
           </div>
         </CardContent>
