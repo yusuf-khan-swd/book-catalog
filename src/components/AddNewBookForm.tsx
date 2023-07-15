@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useAddBookMutation } from '@/redux/features/books/productApi';
+import { useAddBookMutation } from '@/redux/features/books/bookApi';
 import { useAppSelector } from '@/redux/hooks';
 
 interface IAddNewBookInputs {

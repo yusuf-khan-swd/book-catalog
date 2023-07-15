@@ -2,11 +2,8 @@ import ProductCard from '@/components/ProductCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useGetBooksQuery } from '@/redux/features/books/productApi';
-import {
-  setPriceRange,
-  toggleState,
-} from '@/redux/features/books/productSlice';
+import { useGetBooksQuery } from '@/redux/features/books/bookApi';
+import { setPriceRange, toggleState } from '@/redux/features/books/bookSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { Key } from 'react';

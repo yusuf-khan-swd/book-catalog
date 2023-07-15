@@ -1,6 +1,6 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
-import { useSingleBookQuery } from '@/redux/features/books/productApi';
+import { useSingleBookQuery } from '@/redux/features/books/bookApi';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
