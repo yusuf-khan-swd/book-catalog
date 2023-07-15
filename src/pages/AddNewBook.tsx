@@ -2,7 +2,7 @@ import AddNewBookForm from '@/components/AddNewBookForm';
 
 const AddNewBook = () => {
   return (
-    <div>
+    <div className="flex justify-center">
       <AddNewBookForm />
     </div>
   );
