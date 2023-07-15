@@ -6,7 +6,7 @@ import Checkout from '@/pages/Checkout';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
-import Signup from '@/pages/Signup';
+import Register from '@/pages/Register';
 import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
@@ -51,7 +51,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <Signup />,
+    element: <Register />,
   },
   {
     path: '*',

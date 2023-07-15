@@ -19,7 +19,7 @@ interface SignupFormInputs {
   password: string;
 }
 
-export function SignupForm({ className, ...props }: UserAuthFormProps) {
+export function RegisterForm({ className, ...props }: UserAuthFormProps) {
   const {
     register,
     handleSubmit,

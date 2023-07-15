@@ -2,9 +2,9 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/technet-logo-white.png';
-import { SignupForm } from '../components/SignUpForm';
+import { RegisterForm } from '../components/RegisterForm';
 
-export default function Signup() {
+export default function Register() {
   return (
     <>
       <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -44,7 +44,7 @@ export default function Signup() {
                 Enter your email below to create your account
               </p>
             </div>
-            <SignupForm />
+            <RegisterForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{' '}
               <Link
