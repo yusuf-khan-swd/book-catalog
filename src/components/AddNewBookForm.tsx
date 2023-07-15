@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useAddBookMutation } from '@/redux/features/products/productApi';
 import { useAppSelector } from '@/redux/hooks';
 
 interface IAddNewBookInputs {
@@ -28,10 +29,18 @@ const AddNewBookForm = () => {
     formState: { errors },
   } = useForm<IAddNewBookInputs>();
 
+  const [addBook] = useAddBookMutation();
+
   const currentTime = new Date();
 
   const onSubmit = async (data: IAddNewBookInputs) => {
     console.log({ ...data, publicationDate: currentTime, user: user.email });
+    const bookData = {
+      ...data,
+      publicationDate: currentTime,
+      user: user.email,
+    };
+    addBook(bookData);
   };
 
   const clearForm = () => {
