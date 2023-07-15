@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useAppSelector } from '@/redux/hooks';
 
 interface IAddNewBookInputs {
   title: string;
@@ -18,6 +19,7 @@ interface IAddNewBookInputs {
   publicationDate: string;
 }
 const AddNewBookForm = () => {
+  const { user } = useAppSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -29,7 +31,7 @@ const AddNewBookForm = () => {
   const currentTime = new Date();
 
   const onSubmit = async (data: IAddNewBookInputs) => {
-    console.log({ ...data, publicationDate: currentTime });
+    console.log({ ...data, publicationDate: currentTime, user: user.email });
   };
 
   const clearForm = () => {
