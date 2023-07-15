@@ -1,11 +1,11 @@
 import App from '@/App';
 import AddNewBook from '@/pages/AddNewBook';
+import BookDetails from '@/pages/BookDetails';
+import Books from '@/pages/Books';
 import Checkout from '@/pages/Checkout';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
-import ProductDetails from '@/pages/ProductDetails';
-import Products from '@/pages/Products';
 import Signup from '@/pages/Signup';
 import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
@@ -20,12 +20,12 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/products',
-        element: <Products />,
+        path: '/books',
+        element: <Books />,
       },
       {
-        path: '/product-details/:id',
-        element: <ProductDetails />,
+        path: '/book-details/:id',
+        element: <BookDetails />,
       },
       {
         path: '/checkout',

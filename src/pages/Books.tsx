@@ -1,4 +1,4 @@
-import ProductCard from '@/components/ProductCard';
+import BookCard from '@/components/BookCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
@@ -8,11 +8,11 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { Key } from 'react';
 
-export default function Products() {
+export default function Books() {
   const { data, isLoading } = useGetBooksQuery(undefined);
 
   const dispatch = useAppDispatch();
-  const { status, priceRange } = useAppSelector((state) => state.product);
+  const { status, priceRange } = useAppSelector((state) => state.book);
 
   if (isLoading) {
     return <h1 className="text-2xl text-center">Loading...</h1>;
@@ -22,19 +22,19 @@ export default function Products() {
     dispatch(setPriceRange(value[0]));
   };
 
-  let productsData;
+  let booksData;
 
   if (status) {
-    productsData = data?.data?.filter(
+    booksData = data?.data?.filter(
       (item: { status: boolean; price: number }) =>
         item.status === true && item.price < priceRange
     );
   } else if (priceRange > 0) {
-    productsData = data?.data?.filter(
+    booksData = data?.data?.filter(
       (item: { price: number }) => item.price < priceRange
     );
   } else {
-    productsData = data;
+    booksData = data;
   }
 
   return (
@@ -62,11 +62,9 @@ export default function Products() {
         </div>
       </div>
       <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">
-        {productsData?.map(
-          (product: IProduct, index: Key | null | undefined) => (
-            <ProductCard key={index} product={product} />
-          )
-        )}
+        {booksData?.map((book: IProduct, index: Key | null | undefined) => (
+          <BookCard key={index} product={book} />
+        ))}
       </div>
     </div>
   );

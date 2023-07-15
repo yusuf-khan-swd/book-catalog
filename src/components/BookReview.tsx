@@ -12,7 +12,7 @@ interface IProps {
   id: string;
 }
 
-export default function ProductReview({ id }: IProps) {
+export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
 
   const { data, isLoading: isCommentLoading } = useGetCommentQuery(id, {
