@@ -26,7 +26,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
-  const [createUserInDB, { isLoading }] = useCreateUserMutation();
+  const [createUserInDB] = useCreateUserMutation();
 
   const dispatch = useAppDispatch();
 
