@@ -10,13 +10,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const { data: book, isLoading } = useSingleBookQuery(id);
   const { user, isLoading: userLoading } = useAppSelector(
     (state) => state.user
   );
 
   const [deleteBook] = useDeleteBookMutation();
-  const { toast } = useToast();
 
   if (isLoading || userLoading) {
     return <h1 className="text-center">Loading...</h1>;
