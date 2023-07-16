@@ -91,7 +91,7 @@ export default function Navbar() {
                             Login
                           </DropdownMenuItem>
                         </Link>
-                        <Link to={'/signup'}>
+                        <Link to={'/register'}>
                           <DropdownMenuItem className="cursor-pointer">
                             Sign Up
                           </DropdownMenuItem>
