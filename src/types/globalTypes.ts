@@ -5,3 +5,10 @@ export interface IBook {
   author: string;
   publicationDate: Date;
 }
+
+export interface IBookForm {
+  title: string;
+  author: string;
+  genre: string;
+  publicationDate: string;
+}
