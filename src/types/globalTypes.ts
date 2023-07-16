@@ -1,10 +1,7 @@
 export interface IBook {
   _id: number;
-  name: string;
-  image: string;
-  price: number;
-  features: string[];
-  status: boolean;
-  rating: number;
-  quantity?: number;
+  title: string;
+  genre: string;
+  author: string;
+  publicationDate: Date;
 }
