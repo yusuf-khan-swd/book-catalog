@@ -34,7 +34,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto ">
           <div>
             <Link to="/">
-              <h1>TaleSync</h1>
+              <h1 className="font-semibold text-2xl ">TaleSync</h1>
             </Link>
           </div>
           <div>
