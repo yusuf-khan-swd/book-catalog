@@ -5,7 +5,7 @@ import { Switch } from '@/components/ui/switch';
 import { useGetBooksQuery } from '@/redux/features/books/bookApi';
 import { setPriceRange, toggleState } from '@/redux/features/books/bookSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { IProduct } from '@/types/globalTypes';
+import { IBook } from '@/types/globalTypes';
 import { Key } from 'react';
 
 export default function Books() {
@@ -62,8 +62,8 @@ export default function Books() {
         </div>
       </div>
       <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">
-        {booksData?.map((book: IProduct, index: Key | null | undefined) => (
-          <BookCard key={index} product={book} />
+        {booksData?.map((book: IBook, index: Key | null | undefined) => (
+          <BookCard key={index} book={book} />
         ))}
       </div>
     </div>
