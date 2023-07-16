@@ -4,7 +4,9 @@ import { IBook } from '@/types/globalTypes';
 import { Key } from 'react';
 
 export default function Home() {
-  const { data, isLoading } = useGetRecentBooksQuery(undefined);
+  const { data, isLoading } = useGetRecentBooksQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading) {
     return <h1 className="min-h-screen text-center">Loading...</h1>;

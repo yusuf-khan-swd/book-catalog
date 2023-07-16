@@ -4,7 +4,9 @@ import { IBook } from '@/types/globalTypes';
 import { Key } from 'react';
 
 export default function Books() {
-  const { data, isLoading } = useGetBooksQuery(undefined);
+  const { data, isLoading } = useGetBooksQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading) {
     return <h1 className="text-2xl text-center">Loading...</h1>;
