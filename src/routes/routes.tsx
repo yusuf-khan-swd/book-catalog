@@ -7,6 +7,7 @@ import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
 import Register from '@/pages/Register';
+import SearchBook from '@/pages/SearchBook';
 import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
@@ -42,6 +43,10 @@ const routes = createBrowserRouter([
             <AddNewBook />
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/search',
+        element: <SearchBook />,
       },
     ],
   },

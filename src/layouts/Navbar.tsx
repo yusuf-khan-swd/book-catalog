@@ -58,9 +58,11 @@ export default function Navbar() {
               </li>
 
               <li>
-                <Button variant="ghost">
-                  <HiOutlineSearch size="25" />
-                </Button>
+                <Link to="/search">
+                  <Button variant="ghost">
+                    <HiOutlineSearch size="25" />
+                  </Button>
+                </Link>
               </li>
               {!user.email ? (
                 <>
