@@ -18,6 +18,10 @@ export default function BookDetails() {
 
   const date = `${book.publicationDate}`;
 
+  const handleBookDelete = (id: string) => {
+    console.log(id);
+  };
+
   return (
     <>
       <div className="flex min-h-[290px] max-w-7xl mx-auto items-center border-b border-gray-300">
@@ -30,7 +34,7 @@ export default function BookDetails() {
           {userIsBookCreator && (
             <div>
               <Button>Edit</Button>
-              <Button>Delete</Button>
+              <Button onClick={() => handleBookDelete(book._id)}>Delete</Button>
             </div>
           )}
         </div>
