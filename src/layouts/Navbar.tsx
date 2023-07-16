@@ -62,53 +62,58 @@ export default function Navbar() {
                   <HiOutlineSearch size="25" />
                 </Button>
               </li>
-              <li></li>
-              <li className="ml-5">
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="outline-none">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer">
-                      Profile
-                    </DropdownMenuItem>
-                    {!user.email && (
-                      <>
-                        <Link to={'/login'}>
-                          <DropdownMenuItem className="cursor-pointer">
-                            Login
+              {!user.email ? (
+                <>
+                  <li>
+                    <Link to={'/login'}>
+                      <Button variant="link" className="cursor-pointer">
+                        Login
+                      </Button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/register'}>
+                      <Button variant="link" className="cursor-pointer">
+                        Register
+                      </Button>
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <li className="ml-5">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="outline-none">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Account</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem className="cursor-pointer">
+                        Profile
+                      </DropdownMenuItem>
+
+                      {user.email && (
+                        <>
+                          <Link to={'/add-new-book'}>
+                            <DropdownMenuItem className="cursor-pointer">
+                              Add Book
+                            </DropdownMenuItem>
+                          </Link>
+                          <DropdownMenuItem
+                            className="cursor-pointer"
+                            onClick={handleLogout}
+                          >
+                            Logout
                           </DropdownMenuItem>
-                        </Link>
-                        <Link to={'/register'}>
-                          <DropdownMenuItem className="cursor-pointer">
-                            Sign Up
-                          </DropdownMenuItem>
-                        </Link>
-                      </>
-                    )}
-                    {user.email && (
-                      <>
-                        <Link to={'/add-new-book'}>
-                          <DropdownMenuItem className="cursor-pointer">
-                            Add Book
-                          </DropdownMenuItem>
-                        </Link>
-                        <DropdownMenuItem
-                          className="cursor-pointer"
-                          onClick={handleLogout}
-                        >
-                          Logout
-                        </DropdownMenuItem>
-                      </>
-                    )}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </li>
+                        </>
+                      )}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </li>
+              )}
             </ul>
           </div>
         </div>
