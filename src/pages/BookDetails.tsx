@@ -26,7 +26,7 @@ export default function BookDetails() {
               <li key={feature}>{feature}</li>
             ))}
           </ul>
-          <Button>Add to cart</Button>
+          <Button>Add to Bookmark</Button>
         </div>
       </div>
       <BookReview id={id!} />

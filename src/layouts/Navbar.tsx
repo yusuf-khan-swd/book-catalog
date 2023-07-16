@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { signOut } from 'firebase/auth';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import Cart from '../components/Cart';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '../components/ui/button';
 import {
@@ -67,9 +66,7 @@ export default function Navbar() {
                   <HiOutlineSearch size="25" />
                 </Button>
               </li>
-              <li>
-                <Cart />
-              </li>
+              <li></li>
               <li className="ml-5">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="outline-none">

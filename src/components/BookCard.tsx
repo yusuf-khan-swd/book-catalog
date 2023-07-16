@@ -1,5 +1,3 @@
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hooks';
 import { IBook } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
@@ -10,11 +8,10 @@ interface IProps {
 }
 
 export default function BookCard({ book }: IProps) {
-  const dispatch = useAppDispatch();
   const date = `${book.publicationDate}`;
 
   const handleAddProduct = (book: IBook) => {
-    dispatch(addToCart(book));
+    console.log(book);
     toast({
       description: 'Product Added',
     });
