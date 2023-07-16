@@ -1,14 +1,20 @@
 import { Button } from '@/components/ui/button';
-import { useSingleBookQuery } from '@/redux/features/books/bookApi';
+import {
+  useDeleteBookMutation,
+  useSingleBookQuery,
+} from '@/redux/features/books/bookApi';
 import { useAppSelector } from '@/redux/hooks';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: book, isLoading } = useSingleBookQuery(id);
   const { user, isLoading: userLoading } = useAppSelector(
     (state) => state.user
   );
+
+  const [deleteBook] = useDeleteBookMutation();
 
   if (isLoading || userLoading) {
     return <h1 className="text-center">Loading...</h1>;
@@ -18,8 +24,15 @@ export default function BookDetails() {
 
   const date = `${book.publicationDate}`;
 
-  const handleBookDelete = (id: string) => {
-    console.log(id);
+  const handleBookDelete = async (id: string) => {
+    const permissionGrant = window.confirm(
+      'Are you sure you want delete the book'
+    );
+
+    if (permissionGrant) {
+      await deleteBook(id);
+      navigate('/home');
+    }
   };
 
   return (
