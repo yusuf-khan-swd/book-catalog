@@ -12,8 +12,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  useAddBookMutation,
   useSingleBookQuery,
+  useUpdateBookMutation,
 } from '@/redux/features/books/bookApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IBookForm } from '@/types/globalTypes';
@@ -32,7 +32,7 @@ const BookEdit = () => {
   const { toast } = useToast();
   const { data: book, isLoading } = useSingleBookQuery(id);
 
-  const [addBook] = useAddBookMutation();
+  const [updateBook] = useUpdateBookMutation();
 
   const { user, isLoading: userLoading } = useAppSelector(
     (state) => state.user
@@ -44,17 +44,14 @@ const BookEdit = () => {
   const currentTime = new Date();
 
   const onSubmit = async (data: IBookForm) => {
-    console.log({
-      ...data,
-      publicationDate: currentTime,
-      user: user.email,
-    });
     const bookData = {
       ...data,
       publicationDate: currentTime,
       user: user.email,
     };
-    await addBook(bookData);
+    const updatedBookDataWithId = { id: book._id, data: bookData };
+
+    await updateBook(updatedBookDataWithId);
 
     toast({
       description: 'Book Edit successfully.',
@@ -99,6 +96,7 @@ const BookEdit = () => {
                     required: 'Author name is required',
                   })}
                   type="text"
+                  defaultValue={book?.author}
                 />
                 <p className="text-red-500">{errors.author?.message}</p>
               </div>
@@ -114,6 +112,7 @@ const BookEdit = () => {
                     required: 'Genre is required',
                   })}
                   type="text"
+                  defaultValue={book?.genre}
                 />
                 <p className="text-red-500">{errors.genre?.message}</p>
               </div>
@@ -136,7 +135,7 @@ const BookEdit = () => {
             <Button onClick={() => clearForm()} type="button">
               Clear
             </Button>
-            <Button type={'submit'}>Add Book</Button>
+            <Button type={'submit'}>Save Book</Button>
           </CardFooter>
         </form>
       </Card>
