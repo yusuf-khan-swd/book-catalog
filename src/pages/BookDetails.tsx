@@ -1,3 +1,4 @@
+import BookReview from '@/components/BookReview';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -62,7 +63,7 @@ export default function BookDetails() {
           )}
         </div>
       </div>
-      {/* <BookReview id={id!} /> */}
+      <BookReview id={id!} />
     </>
   );
 }

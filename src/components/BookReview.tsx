@@ -15,21 +15,18 @@ interface IProps {
 export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const { data, isLoading: isCommentLoading } = useGetReviewQuery(id, {
+  const { data, isLoading: isReviewLoading } = useGetReviewQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 5000,
   });
 
-  const [postComment, { isLoading: isCommentPostLoading }] =
+  const [postReview, { isLoading: isReviewPostLoading }] =
     usePostReviewMutation();
 
-  if (isCommentLoading || isCommentPostLoading) {
+  if (isReviewLoading) {
     return <h1 className="text-center">Loading...</h1>;
   }
-
-  if (!data?.comments || data?.comments?.length < 1) {
-    return <p>Review not available. Be a first Reviewers</p>;
-  }
+  console.log(data);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     console.log(inputValue);
@@ -37,10 +34,10 @@ export default function BookReview({ id }: IProps) {
 
     const options = {
       id: id,
-      data: { comment: inputValue },
+      data: { review: inputValue },
     };
 
-    postComment(options);
+    postReview(options);
     setInputValue('');
   };
 
@@ -63,17 +60,22 @@ export default function BookReview({ id }: IProps) {
           <FiSend />
         </Button>
       </form>
-      <div className="mt-10">
-        {data?.comments.map((comment: string, index: number) => (
-          <div key={index} className="flex gap-3 items-center mb-5">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <p>{comment}</p>
-          </div>
-        ))}
-      </div>
+      {isReviewPostLoading && <p>Posting...</p>}
+      {!data?.reviews || data?.reviews?.length < 1 ? (
+        <p>Review not available. Be a first Reviewers</p>
+      ) : (
+        <div className="mt-10">
+          {data?.reviews.map((review: string, index: number) => (
+            <div key={index} className="flex gap-3 items-center mb-5">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <p>{review}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
