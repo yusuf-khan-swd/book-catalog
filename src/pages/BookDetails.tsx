@@ -7,6 +7,7 @@ export default function BookDetails() {
   const { id } = useParams();
 
   const { data: book, isLoading } = useSingleBookQuery(id);
+  console.log(book);
 
   if (isLoading) {
     return <h1 className="text-center">Loading...</h1>;
@@ -21,11 +22,7 @@ export default function BookDetails() {
         <div className="w-[50%] space-y-3">
           <h1 className="text-3xl font-semibold">{book?.name}</h1>
           <p className="text-xl">Rating: {book?.rating}</p>
-          <ul className="space-y-1 text-lg">
-            {book?.features?.map((feature: string) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul>
+          <ul className="space-y-1 text-lg"></ul>
           <Button>Add to Bookmark</Button>
         </div>
       </div>

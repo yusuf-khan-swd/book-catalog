@@ -19,7 +19,7 @@ export default function BookCard({ book }: IProps) {
   return (
     <div className="rounded-2xl h-[180px] flex flex-col items-start justify-between p-5 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
       <Link to={`/book-details/${book._id}`} className="w-full">
-        <h1 className="text-xl font-semibold">{book?.title}</h1>
+        <h3 className="text-xl font-semibold">{book?.title}</h3>
         <p>Author: {book?.author}</p>
         <p>Genre: {book?.genre}</p>
         <p>Publication Date: {date}</p>
