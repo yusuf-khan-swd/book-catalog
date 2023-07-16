@@ -2,6 +2,9 @@ import { api } from '@/redux/api/apiSlice';
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getRecentBooks: builder.query({
+      query: () => '/recent-books',
+    }),
     getBooks: builder.query({
       query: () => '/books',
     }),
@@ -31,6 +34,7 @@ const bookApi = api.injectEndpoints({
 });
 
 export const {
+  useGetRecentBooksQuery,
   useGetCommentQuery,
   useGetBooksQuery,
   usePostCommentMutation,
