@@ -1,6 +1,6 @@
 import {
-  useGetCommentQuery,
-  usePostCommentMutation,
+  useGetReviewQuery,
+  usePostReviewMutation,
 } from '@/redux/features/books/bookApi';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FiSend } from 'react-icons/fi';
@@ -15,16 +15,20 @@ interface IProps {
 export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
 
-  const { data, isLoading: isCommentLoading } = useGetCommentQuery(id, {
+  const { data, isLoading: isCommentLoading } = useGetReviewQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 5000,
   });
 
   const [postComment, { isLoading: isCommentPostLoading }] =
-    usePostCommentMutation();
+    usePostReviewMutation();
 
   if (isCommentLoading || isCommentPostLoading) {
     return <h1 className="text-center">Loading...</h1>;
+  }
+
+  if (!data?.comments || data?.comments?.length < 1) {
+    return <p>Review not available. Be a first Reviewers</p>;
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
