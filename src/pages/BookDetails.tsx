@@ -11,7 +11,9 @@ export default function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { data: book, isLoading } = useSingleBookQuery(id);
+  const { data: book, isLoading } = useSingleBookQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
   const { user, isLoading: userLoading } = useAppSelector(
     (state) => state.user
   );
