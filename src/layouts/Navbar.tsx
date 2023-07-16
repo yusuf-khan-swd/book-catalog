@@ -16,6 +16,8 @@ import {
   DropdownMenuTrigger,
 } from '../components/ui/dropdown-menu';
 
+import logo from '../assets/images/tale-sync-logo.png';
+
 export default function Navbar() {
   const { user } = useAppSelector((state) => state.user);
 
@@ -29,11 +31,12 @@ export default function Navbar() {
     });
   };
   return (
-    <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
+    <nav className="w-full h-16 fixed top backdrop-blur-lg z-10 ">
       <div className="h-full w-full bg-white/60">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto ">
           <div>
-            <Link to="/">
+            <Link to="/" className="flex">
+              <img className="mr-3" src={logo} alt="" />
               <h1 className="font-semibold text-2xl ">TaleSync</h1>
             </Link>
           </div>
