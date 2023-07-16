@@ -2,8 +2,10 @@ import {
   useGetReviewQuery,
   usePostReviewMutation,
 } from '@/redux/features/books/bookApi';
+import { useAppSelector } from '@/redux/hooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FiSend } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
@@ -14,6 +16,8 @@ interface IProps {
 
 export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
+
+  const { user } = useAppSelector((state) => state.user);
 
   const { data, isLoading: isReviewLoading } = useGetReviewQuery(id, {
     refetchOnMountOrArgChange: true,
@@ -47,19 +51,29 @@ export default function BookReview({ id }: IProps) {
 
   return (
     <div className="max-w-7xl mx-auto mt-5">
-      <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
-        <Textarea
-          className="min-h-[30px]"
-          onChange={handleChange}
-          value={inputValue}
-        />
-        <Button
-          type="submit"
-          className="rounded-full h-10 w-10 p-2 text-[25px]"
-        >
-          <FiSend />
-        </Button>
-      </form>
+      {user.email ? (
+        <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
+          <Textarea
+            className="min-h-[30px]"
+            onChange={handleChange}
+            value={inputValue}
+          />
+          <Button
+            type="submit"
+            className="rounded-full h-10 w-10 p-2 text-[25px]"
+          >
+            <FiSend />
+          </Button>
+        </form>
+      ) : (
+        <p>
+          Please{' '}
+          <Link to="/login" className=" text-blue-500">
+            login
+          </Link>{' '}
+          to provide a review
+        </p>
+      )}
       {isReviewPostLoading && <p>Posting...</p>}
       {!data?.reviews || data?.reviews?.length < 1 ? (
         <p>Review not available. Be a first Reviewers</p>
