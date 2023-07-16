@@ -11,6 +11,7 @@ interface IProps {
 
 export default function BookCard({ book }: IProps) {
   const dispatch = useAppDispatch();
+  const date = `${book.publicationDate}`;
 
   const handleAddProduct = (book: IBook) => {
     dispatch(addToCart(book));
@@ -24,6 +25,7 @@ export default function BookCard({ book }: IProps) {
         <h1 className="text-xl font-semibold">{book?.title}</h1>
         <p>Author: {book?.author}</p>
         <p>Genre: {book?.genre}</p>
+        <p>Publication Date: {date}</p>
       </Link>
       <Button variant="default" onClick={() => handleAddProduct(book)}>
         Add to Wishlist
