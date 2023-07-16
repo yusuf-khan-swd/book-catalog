@@ -1,6 +1,7 @@
 import App from '@/App';
 import AddNewBook from '@/pages/AddNewBook';
 import BookDetails from '@/pages/BookDetails';
+import BookEdit from '@/pages/BookEdit';
 import Books from '@/pages/Books';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
@@ -30,7 +31,10 @@ const routes = createBrowserRouter([
         path: '/book-details/:id',
         element: <BookDetails />,
       },
-
+      {
+        path: '/book-edit/:id',
+        element: <BookEdit />,
+      },
       {
         path: '/add-new-book',
         element: (

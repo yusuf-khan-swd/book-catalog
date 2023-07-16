@@ -5,7 +5,7 @@ import {
   useSingleBookQuery,
 } from '@/redux/features/books/bookApi';
 import { useAppSelector } from '@/redux/hooks';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -52,7 +52,9 @@ export default function BookDetails() {
           {user.email && <Button>Add to Bookmark</Button>}
           {userIsBookCreator && (
             <div>
-              <Button>Edit</Button>
+              <Link to={`/book-edit/${book._id}`}>
+                <Button>Edit</Button>
+              </Link>
               <Button onClick={() => handleBookDelete(book._id)}>Delete</Button>
             </div>
           )}
