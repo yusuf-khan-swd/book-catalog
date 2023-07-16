@@ -1,14 +1,20 @@
 import { Button } from '@/components/ui/button';
 import { useSingleBookQuery } from '@/redux/features/books/bookApi';
+import { useAppSelector } from '@/redux/hooks';
 import { useParams } from 'react-router-dom';
 
 export default function BookDetails() {
   const { id } = useParams();
   const { data: book, isLoading } = useSingleBookQuery(id);
+  const { user, isLoading: userLoading } = useAppSelector(
+    (state) => state.user
+  );
 
-  if (isLoading) {
+  if (isLoading || userLoading) {
     return <h1 className="text-center">Loading...</h1>;
   }
+
+  const userIsBookCreator = user?.email === book?.user;
 
   const date = `${book.publicationDate}`;
 
@@ -21,6 +27,12 @@ export default function BookDetails() {
           <p>Genre: {book?.genre}</p>
           <p>Publication Date: {date}</p>
           <Button>Add to Bookmark</Button>
+          {userIsBookCreator && (
+            <div>
+              <Button>Edit</Button>
+              <Button>Delete</Button>
+            </div>
+          )}
         </div>
       </div>
       {/* <BookReview id={id!} /> */}
