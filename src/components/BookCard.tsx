@@ -20,18 +20,14 @@ export default function BookCard({ book }: IProps) {
   };
   return (
     <div>
-      <div className="rounded-2xl h-[480px] flex flex-col items-start justify-between p-5 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
+      <div className="rounded-2xl h-[180px] flex flex-col items-start justify-between p-5 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
         <Link to={`/book-details/${book._id}`} className="w-full">
-          <img src={book?.image} alt="product" />
-          <h1 className="text-xl font-semibold">{book?.name}</h1>
+          <h1 className="text-xl font-semibold">{book?.title}</h1>
+          <p>Author: {book?.author}</p>
+          <p>Genre: {book?.genre}</p>
         </Link>
-        <p>Rating: {book?.rating}</p>
-        <p className="text-sm">
-          Availability: {book?.status ? 'In stock' : 'Out of stock'}
-        </p>
-        <p className="text-sm">Price: {book?.price}</p>
         <Button variant="default" onClick={() => handleAddProduct(book)}>
-          Add to cart
+          Add to Wishlist
         </Button>
       </div>
     </div>
