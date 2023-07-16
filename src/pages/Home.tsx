@@ -7,13 +7,13 @@ export default function Home() {
   const { data, isLoading } = useGetRecentBooksQuery(undefined);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1 className="min-h-screen text-center">Loading...</h1>;
   }
 
   const recentBooksData = data?.data;
 
   return (
-    <div className="grid max-w-7xl mx-auto relative ">
+    <div className="grid max-w-7xl mx-auto relative">
       <h3 className="text-semibold text-2xl mb-4">Recently Added Books</h3>
       <div className="grid grid-cols-3 gap-10 pb-20">
         {recentBooksData?.map((book: IBook, index: Key | null | undefined) => (
