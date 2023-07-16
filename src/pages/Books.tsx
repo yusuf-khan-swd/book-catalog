@@ -13,8 +13,8 @@ export default function Books() {
   const booksData = data.data;
 
   return (
-    <div className="grid grid-cols-12 max-w-7xl mx-auto relative ">
-      <div className="col-span-9 grid grid-cols-3 gap-10 pb-20">
+    <div className="grid max-w-7xl mx-auto relative ">
+      <div className="grid grid-cols-3 gap-10 pb-20">
         {booksData?.map((book: IBook, index: Key | null | undefined) => (
           <BookCard key={index} book={book} />
         ))}
