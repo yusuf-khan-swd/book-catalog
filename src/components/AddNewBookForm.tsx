@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAddBookMutation } from '@/redux/features/books/bookApi';
 import { useAppSelector } from '@/redux/hooks';
+import { useToast } from './ui/use-toast';
 
 interface IAddNewBookInputs {
   title: string;
@@ -20,6 +21,7 @@ interface IAddNewBookInputs {
   publicationDate: string;
 }
 const AddNewBookForm = () => {
+  const { toast } = useToast();
   const { user } = useAppSelector((state) => state.user);
   const {
     register,
@@ -41,6 +43,10 @@ const AddNewBookForm = () => {
       user: user.email,
     };
     await addBook(bookData);
+
+    toast({
+      description: 'Book Added successfully.',
+    });
   };
 
   const clearForm = () => {
