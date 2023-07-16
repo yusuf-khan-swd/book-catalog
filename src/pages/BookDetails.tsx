@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 import {
   useDeleteBookMutation,
   useSingleBookQuery,
@@ -15,6 +16,7 @@ export default function BookDetails() {
   );
 
   const [deleteBook] = useDeleteBookMutation();
+  const { toast } = useToast();
 
   if (isLoading || userLoading) {
     return <h1 className="text-center">Loading...</h1>;
@@ -31,6 +33,10 @@ export default function BookDetails() {
 
     if (permissionGrant) {
       await deleteBook(id);
+      toast({
+        variant: 'destructive',
+        description: 'Book Deleted successfully.',
+      });
       navigate('/home');
     }
   };
