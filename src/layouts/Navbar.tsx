@@ -33,7 +33,7 @@ export default function Navbar() {
       <div className="h-full w-full bg-white/60">
         <div className="flex items-center justify-between w-full md:max-w-7xl h-full mx-auto ">
           <div>
-            <Link to="/home">
+            <Link to="/">
               <h1>TaleSync</h1>
             </Link>
           </div>
@@ -41,7 +41,7 @@ export default function Navbar() {
             <ul className="flex items-center">
               <li>
                 <Button variant="link" asChild>
-                  <Link to="/">Home</Link>
+                  <Link to="/home">Home</Link>
                 </Button>
               </li>
               <li>
