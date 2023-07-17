@@ -20,6 +20,7 @@ export default function BookCard({ book }: IProps) {
   const handleAddToWishlist = async (email: string, book: IBook) => {
     const wishlistData = {
       user: email,
+      bookId: book._id,
       currentlyReading: false,
       planToRead: false,
       finished: false,
