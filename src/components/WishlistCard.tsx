@@ -21,15 +21,27 @@ export default function WishlistCard({ wishlist }: IProps) {
 
   const handleCurrentlyReading = async () => {
     const id = wishlist._id;
-    const isCurrentlyReading = !wishlist.currentlyReading;
+    const isCurrentlyReading = wishlist.currentlyReading;
 
-    console.log({ currentlyReading: isCurrentlyReading });
-
-    const options = { id, data: { currentlyReading: isCurrentlyReading } };
+    const options = { id, data: { currentlyReading: !isCurrentlyReading } };
     const result = await updateWishlist(options);
 
     toast({
       description: 'Added to currently reading.',
+    });
+
+    console.log({ result });
+  };
+
+  const handlePlanToRead = async () => {
+    const id = wishlist._id;
+    const isPlanToRead = wishlist.planToRead;
+
+    const options = { id, data: { planToRead: !isPlanToRead } };
+    const result = await updateWishlist(options);
+
+    toast({
+      description: 'Added plan to read.',
     });
 
     console.log({ result });
@@ -46,7 +58,7 @@ export default function WishlistCard({ wishlist }: IProps) {
       {user.email && (
         <>
           <Button onClick={handleCurrentlyReading}>Currently Reading</Button>
-          <Button>Plan to Read</Button>
+          <Button onClick={handlePlanToRead}>Plan to Read</Button>
           <Button>Finished</Button>
         </>
       )}
