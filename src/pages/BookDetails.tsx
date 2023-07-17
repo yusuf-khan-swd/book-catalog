@@ -83,7 +83,12 @@ export default function BookDetails() {
               <Link to={`/book-edit/${book._id}`}>
                 <Button>Edit</Button>
               </Link>
-              <Button onClick={() => handleBookDelete(book._id)}>Delete</Button>
+              <Button
+                className="ml-2"
+                onClick={() => handleBookDelete(book._id)}
+              >
+                Delete
+              </Button>
             </div>
           )}
         </div>
