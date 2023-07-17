@@ -50,6 +50,9 @@ const bookApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    getWishlist: builder.query({
+      query: (email) => `/wishlist/${email}`,
+    }),
   }),
 });
 
@@ -63,4 +66,5 @@ export const {
   useSingleBookQuery,
   useAddBookMutation,
   useAddToWishlistMutation,
+  useGetWishlistQuery,
 } = bookApi;
