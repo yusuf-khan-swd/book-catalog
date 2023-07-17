@@ -5,13 +5,18 @@ import { IWishlist } from '@/types/globalTypes';
 import { Key } from 'react';
 
 const Wishlist = () => {
-  const { user, isLoading: userLoading } = useAppSelector(
+  const { user, isLoading: isUserLoading } = useAppSelector(
     (state) => state.user
   );
 
-  const { data: wishlistData, isLoading } = useGetWishlistQuery(user.email, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: wishlistData, isLoading: isWishlistLoading } =
+    useGetWishlistQuery(user.email, {
+      refetchOnMountOrArgChange: true,
+    });
+
+  if (isUserLoading || isWishlistLoading) {
+    return <p className="min-h-screen text-center">Loading...</p>;
+  }
 
   return (
     <div className="min-h-screen">
