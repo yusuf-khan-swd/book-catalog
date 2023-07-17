@@ -47,6 +47,25 @@ export default function WishlistCard({ wishlist }: IProps) {
     console.log({ result });
   };
 
+  const handleFinished = async () => {
+    const id = wishlist._id;
+    const isFinished = wishlist.finished;
+
+    const modifiedData =
+      isFinished === false
+        ? { finished: true, planToRead: false, currentlyReading: false }
+        : { finished: false };
+
+    const options = { id, data: modifiedData };
+    const result = await updateWishlist(options);
+
+    toast({
+      description: 'Finished Reading.',
+    });
+
+    console.log({ result });
+  };
+
   return (
     <div className="rounded-2xl flex flex-col items-start justify-between p-5 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
       <Link to={`/book-details/${book._id}`} className="w-full">
@@ -59,7 +78,7 @@ export default function WishlistCard({ wishlist }: IProps) {
         <>
           <Button onClick={handleCurrentlyReading}>Currently Reading</Button>
           <Button onClick={handlePlanToRead}>Plan to Read</Button>
-          <Button>Finished</Button>
+          <Button onClick={handleFinished}>Finished</Button>
         </>
       )}
     </div>
