@@ -42,7 +42,9 @@ const AddNewBookForm = () => {
       publicationDate: currentTime,
       user: user.email,
     };
-    await addBook(bookData);
+    const result = await addBook(bookData);
+
+    console.log(result);
 
     toast({
       description: 'Book Added successfully.',
