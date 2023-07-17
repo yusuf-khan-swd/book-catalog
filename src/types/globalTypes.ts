@@ -12,3 +12,11 @@ export interface IBookForm {
   genre: string;
   publicationDate: string;
 }
+
+export interface IWishlist {
+  user: string;
+  currentlyReading: boolean;
+  planToRead: boolean;
+  finished: boolean;
+  book: IBook;
+}
