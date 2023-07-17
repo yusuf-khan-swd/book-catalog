@@ -1,4 +1,4 @@
-import { useAddToWishlistMutation } from '@/redux/features/books/bookApi';
+import { useAddToWishlistMutation } from '@/redux/features/wishlist/wishlistApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IBook } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';
@@ -43,9 +43,11 @@ export default function WishlistCard({ book }: IProps) {
         <p>Publication Date: {date}</p>
       </Link>
       {user.email && (
-        <Button onClick={() => handleAddToWishlist(user.email!, book)}>
-          Add to Wishlist
-        </Button>
+        <>
+          <Button>Currently Reading</Button>
+          <Button>Plan to Read</Button>
+          <Button>Finished</Button>
+        </>
       )}
     </div>
   );

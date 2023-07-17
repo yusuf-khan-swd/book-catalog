@@ -2,10 +2,10 @@ import BookReview from '@/components/BookReview';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
-  useAddToWishlistMutation,
   useDeleteBookMutation,
   useSingleBookQuery,
 } from '@/redux/features/books/bookApi';
+import { useAddToWishlistMutation } from '@/redux/features/wishlist/wishlistApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IBook } from '@/types/globalTypes';
 import { Link, useNavigate, useParams } from 'react-router-dom';

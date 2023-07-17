@@ -1,4 +1,4 @@
-import { useAddToWishlistMutation } from '@/redux/features/books/bookApi';
+import { useAddToWishlistMutation } from '@/redux/features/wishlist/wishlistApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IBook } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';

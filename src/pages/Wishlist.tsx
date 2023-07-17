@@ -1,5 +1,5 @@
 import WishlistCard from '@/components/WishlistCard';
-import { useGetWishlistQuery } from '@/redux/features/books/bookApi';
+import { useGetWishlistQuery } from '@/redux/features/wishlist/wishlistApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IWishlist } from '@/types/globalTypes';
 import { Key } from 'react';

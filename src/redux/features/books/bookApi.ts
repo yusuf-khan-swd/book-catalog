@@ -43,16 +43,6 @@ const bookApi = api.injectEndpoints({
       query: (id) => `/review/${id}`,
       providesTags: ['reviews'],
     }),
-    addToWishlist: builder.mutation({
-      query: (data) => ({
-        url: `/wishlist`,
-        method: 'POST',
-        body: data,
-      }),
-    }),
-    getWishlist: builder.query({
-      query: (email) => `/wishlist/${email}`,
-    }),
   }),
 });
 
@@ -65,6 +55,4 @@ export const {
   useDeleteBookMutation,
   useSingleBookQuery,
   useAddBookMutation,
-  useAddToWishlistMutation,
-  useGetWishlistQuery,
 } = bookApi;
