@@ -1,5 +1,5 @@
 export interface IBook {
-  _id: number;
+  _id: string;
   title: string;
   genre: string;
   author: string;
@@ -14,7 +14,9 @@ export interface IBookForm {
 }
 
 export interface IWishlist {
+  _id: string;
   user: string;
+  userId: string;
   currentlyReading: boolean;
   planToRead: boolean;
   finished: boolean;

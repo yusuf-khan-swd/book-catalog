@@ -1,37 +1,38 @@
-import { useAddToWishlistMutation } from '@/redux/features/wishlist/wishlistApi';
+import { useUpdateWishlistMutation } from '@/redux/features/wishlist/wishlistApi';
 import { useAppSelector } from '@/redux/hooks';
-import { IBook } from '@/types/globalTypes';
+import { IWishlist } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { useToast } from './ui/use-toast';
 
 interface IProps {
-  book: IBook;
+  wishlist: IWishlist;
 }
 
-export default function WishlistCard({ book }: IProps) {
+export default function WishlistCard({ wishlist }: IProps) {
+  const book = wishlist.book;
+
   const { toast } = useToast();
-  const [addToWishlist] = useAddToWishlistMutation();
+  const [updateWishlist] = useUpdateWishlistMutation();
 
   const { user } = useAppSelector((state) => state.user);
 
   const date = `${book.publicationDate}`;
 
-  const handleAddToWishlist = async (email: string, book: IBook) => {
-    const wishlistData = {
-      user: email,
-      currentlyReading: false,
-      planToRead: false,
-      finished: false,
-      book,
-    };
-    const result = await addToWishlist(wishlistData);
+  const handleCurrentlyReading = async () => {
+    const id = wishlist._id;
+    const isCurrentlyReading = !wishlist.currentlyReading;
+
+    console.log({ currentlyReading: isCurrentlyReading });
+
+    const options = { id, data: { currentlyReading: isCurrentlyReading } };
+    const result = await updateWishlist(options);
 
     toast({
-      description: 'Added to wishlist successfully.',
+      description: 'Added to currently reading.',
     });
 
-    console.log(result);
+    console.log({ result });
   };
 
   return (
@@ -44,7 +45,7 @@ export default function WishlistCard({ book }: IProps) {
       </Link>
       {user.email && (
         <>
-          <Button>Currently Reading</Button>
+          <Button onClick={handleCurrentlyReading}>Currently Reading</Button>
           <Button>Plan to Read</Button>
           <Button>Finished</Button>
         </>

@@ -12,7 +12,18 @@ const wishlistApi = api.injectEndpoints({
     getWishlist: builder.query({
       query: (email) => `/wishlist/${email}`,
     }),
+    updateWishlist: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/wishlist/${id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useAddToWishlistMutation, useGetWishlistQuery } = wishlistApi;
+export const {
+  useAddToWishlistMutation,
+  useGetWishlistQuery,
+  useUpdateWishlistMutation,
+} = wishlistApi;

@@ -20,11 +20,12 @@ const Wishlist = () => {
 
   return (
     <div className="min-h-screen">
+      {wishlistData.length < 1 && <p>No book added in wishlist</p>}
       <div className="grid max-w-7xl mx-auto relative ">
         <div className="grid grid-cols-3 gap-10 pb-20">
           {wishlistData?.map(
             (wishlist: IWishlist, index: Key | null | undefined) => (
-              <WishlistCard key={index} book={wishlist.book} />
+              <WishlistCard key={index} wishlist={wishlist} />
             )
           )}
         </div>
