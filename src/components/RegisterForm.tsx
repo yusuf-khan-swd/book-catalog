@@ -11,6 +11,7 @@ import { createUser } from '@/redux/features/user/userSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
+import { useToast } from './ui/use-toast';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -26,6 +27,7 @@ export function RegisterForm({ className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<RegisterFormInputs>();
 
+  const { toast } = useToast();
   const [createUserInDB] = useCreateUserMutation();
 
   const dispatch = useAppDispatch();
@@ -36,7 +38,11 @@ export function RegisterForm({ className, ...props }: UserAuthFormProps) {
 
     await createUserInDB({ email, password });
 
-    dispatch(createUser({ email: data.email, password: data.password }));
+    await dispatch(createUser({ email: data.email, password: data.password }));
+
+    toast({
+      description: 'User Created successfully.',
+    });
   };
 
   return (

@@ -23,13 +23,13 @@ interface LoginFormInputs {
 }
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
-  const { toast } = useToast();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
+  const { toast } = useToast();
   const { user, isLoading } = useAppSelector((state) => state.user);
   const [loginUserUsingDb] = useLoginMutation();
   const dispatch = useAppDispatch();
@@ -46,7 +46,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
     await loginUserUsingDb({ email, password });
 
-    dispatch(loginUser({ email: data.email, password: data.password }));
+    await dispatch(loginUser({ email: data.email, password: data.password }));
 
     toast({
       description: 'You logged in successfully.',
