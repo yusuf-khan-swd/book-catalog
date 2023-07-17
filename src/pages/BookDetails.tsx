@@ -2,6 +2,7 @@ import BookReview from '@/components/BookReview';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
+  useAddToWishlistMutation,
   useDeleteBookMutation,
   useSingleBookQuery,
 } from '@/redux/features/books/bookApi';
@@ -18,6 +19,7 @@ export default function BookDetails() {
   const { user, isLoading: userLoading } = useAppSelector(
     (state) => state.user
   );
+  const [addToWishlist] = useAddToWishlistMutation();
 
   const [deleteBook] = useDeleteBookMutation();
 
@@ -44,6 +46,23 @@ export default function BookDetails() {
     }
   };
 
+  const handleAddToWishlist = async (email: string, bookId: string) => {
+    const wishlistData = {
+      bookId,
+      user: email,
+      currentlyReading: false,
+      planToRead: false,
+      finished: false,
+    };
+    const result = await addToWishlist(wishlistData);
+
+    toast({
+      description: 'Add to wishlist successfully.',
+    });
+
+    console.log(result);
+  };
+
   return (
     <>
       <div className="flex min-h-[290px] max-w-7xl mx-auto items-center border-b border-gray-300">
@@ -52,7 +71,11 @@ export default function BookDetails() {
           <p className="text-xl">Rating: {book?.author}</p>
           <p>Genre: {book?.genre}</p>
           <p>Publication Date: {date}</p>
-          {user.email && <Button>Add to Wishlist</Button>}
+          {user.email && (
+            <Button onClick={() => handleAddToWishlist(user.email!, book._id)}>
+              Add to Wishlist
+            </Button>
+          )}
           {userIsBookCreator && (
             <div>
               <Link to={`/book-edit/${book._id}`}>
