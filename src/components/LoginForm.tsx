@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useToast } from './ui/use-toast';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -22,6 +23,7 @@ interface LoginFormInputs {
 }
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
+  const { toast } = useToast();
   const {
     register,
     handleSubmit,
@@ -45,6 +47,10 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
     await loginUserUsingDb({ email, password });
 
     dispatch(loginUser({ email: data.email, password: data.password }));
+
+    toast({
+      description: 'You logged in successfully.',
+    });
   };
 
   useEffect(() => {
