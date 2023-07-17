@@ -96,22 +96,22 @@ export default function Navbar() {
                       <DropdownMenuItem className="cursor-pointer">
                         Profile
                       </DropdownMenuItem>
-
-                      {user.email && (
-                        <>
-                          <Link to={'/add-new-book'}>
-                            <DropdownMenuItem className="cursor-pointer">
-                              Add Book
-                            </DropdownMenuItem>
-                          </Link>
-                          <DropdownMenuItem
-                            className="cursor-pointer"
-                            onClick={handleLogout}
-                          >
-                            Logout
-                          </DropdownMenuItem>
-                        </>
-                      )}
+                      <Link to={'/wishlist'}>
+                        <DropdownMenuItem className="cursor-pointer">
+                          Wishlist
+                        </DropdownMenuItem>
+                      </Link>
+                      <Link to={'/add-new-book'}>
+                        <DropdownMenuItem className="cursor-pointer">
+                          Add Book
+                        </DropdownMenuItem>
+                      </Link>
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </li>

@@ -8,6 +8,7 @@ import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
 import Register from '@/pages/Register';
 import SearchBook from '@/pages/SearchBook';
+import Wishlist from '@/pages/Wishlist';
 import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
@@ -47,6 +48,10 @@ const routes = createBrowserRouter([
       {
         path: '/search',
         element: <SearchBook />,
+      },
+      {
+        path: '/wishlist',
+        element: <Wishlist />,
       },
     ],
   },
