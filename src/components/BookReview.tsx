@@ -1,7 +1,7 @@
 import {
   useGetReviewQuery,
   usePostReviewMutation,
-} from '@/redux/features/books/bookApi';
+} from '@/redux/features/review/reviewApi';
 import { useAppSelector } from '@/redux/hooks';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FiSend } from 'react-icons/fi';
