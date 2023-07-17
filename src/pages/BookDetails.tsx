@@ -52,7 +52,7 @@ export default function BookDetails() {
           <p className="text-xl">Rating: {book?.author}</p>
           <p>Genre: {book?.genre}</p>
           <p>Publication Date: {date}</p>
-          {user.email && <Button>Add to Bookmark</Button>}
+          {user.email && <Button>Add to Wishlist</Button>}
           {userIsBookCreator && (
             <div>
               <Link to={`/book-edit/${book._id}`}>
