@@ -7,6 +7,7 @@ import {
   useSingleBookQuery,
 } from '@/redux/features/books/bookApi';
 import { useAppSelector } from '@/redux/hooks';
+import { IBook } from '@/types/globalTypes';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
@@ -19,6 +20,7 @@ export default function BookDetails() {
   const { user, isLoading: userLoading } = useAppSelector(
     (state) => state.user
   );
+
   const [addToWishlist] = useAddToWishlistMutation();
 
   const [deleteBook] = useDeleteBookMutation();
@@ -46,18 +48,18 @@ export default function BookDetails() {
     }
   };
 
-  const handleAddToWishlist = async (email: string, bookId: string) => {
+  const handleAddToWishlist = async (email: string, book: IBook) => {
     const wishlistData = {
-      bookId,
       user: email,
       currentlyReading: false,
       planToRead: false,
       finished: false,
+      book,
     };
     const result = await addToWishlist(wishlistData);
 
     toast({
-      description: 'Add to wishlist successfully.',
+      description: 'Added to wishlist successfully.',
     });
 
     console.log(result);
@@ -72,7 +74,7 @@ export default function BookDetails() {
           <p>Genre: {book?.genre}</p>
           <p>Publication Date: {date}</p>
           {user.email && (
-            <Button onClick={() => handleAddToWishlist(user.email!, book._id)}>
+            <Button onClick={() => handleAddToWishlist(user.email!, book)}>
               Add to Wishlist
             </Button>
           )}
