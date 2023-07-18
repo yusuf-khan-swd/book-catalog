@@ -52,43 +52,45 @@ export default function BookReview({ id }: IProps) {
   return (
     <div className="max-w-7xl mx-auto mt-5">
       {user.email ? (
-        <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
-          <Textarea
-            className="min-h-[30px]"
-            onChange={handleChange}
-            value={inputValue}
-          />
-          <Button
-            type="submit"
-            className="rounded-full h-10 w-10 p-2 text-[25px]"
-          >
-            <FiSend />
-          </Button>
-        </form>
+        <div>
+          <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
+            <Textarea
+              className="min-h-[30px]"
+              onChange={handleChange}
+              value={inputValue}
+            />
+            <Button
+              type="submit"
+              className="rounded-full h-10 w-10 p-2 text-[25px]"
+            >
+              <FiSend />
+            </Button>
+          </form>
+          {isReviewPostLoading && <p>Posting...</p>}
+          {!data?.reviews || data?.reviews?.length < 1 ? (
+            <p className="my-2">Be a first Reviewer of the book.</p>
+          ) : (
+            <div className="mt-10">
+              {data?.reviews.map((review: string, index: number) => (
+                <div key={index} className="flex gap-3 items-center mb-5">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  <p>{review}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       ) : (
-        <p>
+        <p className="my-3">
           Please{' '}
           <Link to="/login" className=" text-blue-500">
             login
           </Link>{' '}
           to provide a review
         </p>
-      )}
-      {isReviewPostLoading && <p>Posting...</p>}
-      {!data?.reviews || data?.reviews?.length < 1 ? (
-        <p>Review not available. Be a first Reviewers</p>
-      ) : (
-        <div className="mt-10">
-          {data?.reviews.map((review: string, index: number) => (
-            <div key={index} className="flex gap-3 items-center mb-5">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <p>{review}</p>
-            </div>
-          ))}
-        </div>
       )}
     </div>
   );
