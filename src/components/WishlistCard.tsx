@@ -30,9 +30,16 @@ export default function WishlistCard({ wishlist }: IProps) {
     const options = { id, data: { currentlyReading: !isCurrentlyReading } };
     const result = await updateWishlist(options);
 
-    toast({
-      description: 'Added to currently reading.',
-    });
+    if (isCurrentlyReading === false) {
+      toast({
+        description: 'Added to currently reading.',
+      });
+    } else {
+      toast({
+        variant: 'destructive',
+        description: 'Remove from currently reading.',
+      });
+    }
 
     console.log({ result });
   };
@@ -44,9 +51,16 @@ export default function WishlistCard({ wishlist }: IProps) {
     const options = { id, data: { planToRead: !isPlanToRead } };
     const result = await updateWishlist(options);
 
-    toast({
-      description: 'Added plan to read.',
-    });
+    if (isPlanToRead === false) {
+      toast({
+        description: 'Added to plan to read.',
+      });
+    } else {
+      toast({
+        variant: 'destructive',
+        description: 'Remove from plan to read.',
+      });
+    }
 
     console.log({ result });
   };
@@ -63,11 +77,18 @@ export default function WishlistCard({ wishlist }: IProps) {
     const options = { id, data: modifiedData };
     const result = await updateWishlist(options);
 
-    toast({
-      description: 'Finished Reading.',
-    });
+    if (isFinished === false) {
+      toast({
+        description: 'Added to finished reading.',
+      });
+    } else {
+      toast({
+        variant: 'destructive',
+        description: 'Remove from finished reading.',
+      });
+    }
 
-    console.log({ result });
+    console.log(result);
   };
 
   const handleDelete = async () => {
