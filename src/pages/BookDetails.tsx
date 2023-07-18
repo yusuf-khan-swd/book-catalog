@@ -71,7 +71,7 @@ export default function BookDetails() {
       <div className="flex min-h-[290px] max-w-7xl mx-auto items-center border-b border-gray-300">
         <div className="space-y-3">
           <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-xl">Rating: {book?.author}</p>
+          <p className="text-xl">Author: {book?.author}</p>
           <p>Genre: {book?.genre}</p>
           <p>Publication Date: {date}</p>
           {user.email && (
