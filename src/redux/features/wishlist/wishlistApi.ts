@@ -19,6 +19,12 @@ const wishlistApi = api.injectEndpoints({
         body: data,
       }),
     }),
+    deleteFromWishlist: builder.mutation({
+      query: (id) => ({
+        url: `/wishlist/${id}`,
+        method: 'DELETE',
+      }),
+    }),
   }),
 });
 
@@ -26,4 +32,5 @@ export const {
   useAddToWishlistMutation,
   useGetWishlistQuery,
   useUpdateWishlistMutation,
+  useDeleteFromWishlistMutation,
 } = wishlistApi;

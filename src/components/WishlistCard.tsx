@@ -1,4 +1,7 @@
-import { useUpdateWishlistMutation } from '@/redux/features/wishlist/wishlistApi';
+import {
+  useDeleteFromWishlistMutation,
+  useUpdateWishlistMutation,
+} from '@/redux/features/wishlist/wishlistApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IWishlist } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';
@@ -14,6 +17,7 @@ export default function WishlistCard({ wishlist }: IProps) {
 
   const { toast } = useToast();
   const [updateWishlist] = useUpdateWishlistMutation();
+  const [deleteFromWishlist] = useDeleteFromWishlistMutation();
 
   const { user } = useAppSelector((state) => state.user);
 
@@ -66,6 +70,16 @@ export default function WishlistCard({ wishlist }: IProps) {
     console.log({ result });
   };
 
+  const handleDelete = async () => {
+    const id = wishlist._id;
+    await deleteFromWishlist(id);
+
+    toast({
+      variant: 'destructive',
+      description: 'Book Deleted successfully.',
+    });
+  };
+
   return (
     <div className="rounded-2xl flex flex-col items-start justify-between p-5 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
       <Link to={`/book-details/${book._id}`} className="w-full">
@@ -79,6 +93,7 @@ export default function WishlistCard({ wishlist }: IProps) {
           <Button onClick={handleCurrentlyReading}>Currently Reading</Button>
           <Button onClick={handlePlanToRead}>Plan to Read</Button>
           <Button onClick={handleFinished}>Finished</Button>
+          <Button onClick={handleDelete}>Remove</Button>
         </>
       )}
     </div>
