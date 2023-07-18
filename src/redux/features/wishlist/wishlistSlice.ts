@@ -10,6 +10,7 @@ const wishlistSlice = createSlice({
   reducers: {
     addToWishlist: (state, action) => {
       console.log(action.payload);
+      console.log(state);
     },
   },
 });

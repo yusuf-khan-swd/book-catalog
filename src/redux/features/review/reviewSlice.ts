@@ -8,6 +8,7 @@ const reviewSlice = createSlice({
   reducers: {
     addReview: (state, action) => {
       console.log(action.payload);
+      console.log(state);
     },
   },
 });
