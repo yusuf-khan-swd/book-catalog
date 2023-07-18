@@ -2,15 +2,15 @@ import { api } from '@/redux/api/apiSlice';
 
 const wishlistApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getWishlist: builder.query({
+      query: (email) => `/wishlist/${email}`,
+    }),
     addToWishlist: builder.mutation({
       query: (data) => ({
         url: `/wishlist`,
         method: 'POST',
         body: data,
       }),
-    }),
-    getWishlist: builder.query({
-      query: (email) => `/wishlist/${email}`,
     }),
     updateWishlist: builder.mutation({
       query: ({ id, data }) => ({
