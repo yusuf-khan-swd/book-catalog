@@ -4,6 +4,7 @@ const wishlistApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getWishlist: builder.query({
       query: (email) => `/wishlist/${email}`,
+      providesTags: ['wishlist'],
     }),
     addToWishlist: builder.mutation({
       query: (data) => ({
@@ -11,6 +12,7 @@ const wishlistApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['wishlist'],
     }),
     updateWishlist: builder.mutation({
       query: ({ id, data }) => ({
@@ -18,12 +20,14 @@ const wishlistApi = api.injectEndpoints({
         method: 'PATCH',
         body: data,
       }),
+      invalidatesTags: ['wishlist'],
     }),
     deleteFromWishlist: builder.mutation({
       query: (id) => ({
         url: `/wishlist/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['wishlist'],
     }),
   }),
 });
