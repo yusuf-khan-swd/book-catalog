@@ -15,7 +15,7 @@ export default function Home() {
   const recentBooksData = data?.data;
 
   return (
-    <div className="grid max-w-7xl mx-auto relative min-h-screen">
+    <div className="max-w-7xl mx-auto relative min-h-screen">
       <h3 className="text-semibold text-2xl mb-4">Recently Added Books</h3>
       <div className="grid grid-cols-3 gap-10 pb-20">
         {recentBooksData?.map((book: IBook, index: Key | null | undefined) => (
